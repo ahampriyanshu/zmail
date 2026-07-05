@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-labelledby="title">
+  <title id="title">SuperTrips</title>
+  <rect width="96" height="96" rx="22" fill="#f5f0e8"/>
+  <path d="M12 64c15-14 27-14 38-6 12 8 21 6 34-9" fill="none" stroke="#c9962a" stroke-width="6" stroke-linecap="round" stroke-dasharray="1 12"/>
+  <path d="M15 45c15-13 28-13 39-5 12 8 20 6 31-8" fill="none" stroke="#6a5a48" stroke-width="3" stroke-linecap="round" opacity=".45"/>
+  <circle cx="25" cy="56" r="5" fill="#c9962a"/>
+  <circle cx="53" cy="58" r="5" fill="#c9962a"/>
+  <circle cx="75" cy="42" r="5" fill="#c9962a"/>
+  <text x="17" y="32" fill="#1a1208" font-family="Georgia, 'Times New Roman', serif" font-size="21" font-weight="700">ST</text>
+</svg>

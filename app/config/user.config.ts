@@ -4,5 +4,5 @@ export const USER = {
   twitter: 'ahampriyanshu',
   github: 'ahampriyanshu',
   LINKEDIN: 'https://linkedin.com/in/ahampriyanshu',
-  email: 'ahampriyanshu@gmail.com',
+  email: 'avampriyanshu@gmail.com',
 };

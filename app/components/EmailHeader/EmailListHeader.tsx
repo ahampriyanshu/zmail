@@ -20,29 +20,37 @@ export const EmailListHeader = () => {
   };
   const isSplitViewActive = state?.isSplitViewActive || false;
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${styles.list_header}`}>
       <div className={styles.select_container}>
-        <IconBtn id={PRODUCT_TOUR.FIFTH_STEP} onClick={resetApp} padding='6px'>
+        <IconBtn
+          id={PRODUCT_TOUR.FIFTH_STEP}
+          aria-label='Reset app'
+          onClick={resetApp}
+          padding='6px'
+        >
           <Refresh height={20} width={20} />
         </IconBtn>
-        <IconBtn padding='6px'>
+        <IconBtn aria-label='More options' padding='6px'>
           <ViewMore height={20} width={20} />
         </IconBtn>
       </div>
       <div className={styles.details_container}>
         <div className={styles.pagination}>1-10 of 10</div>
 
-        <IconBtn disabled padding='6px'>
+        <IconBtn aria-label='Previous page' disabled padding='6px'>
           <ChevronLeft height={20} width={20} />
         </IconBtn>
 
-        <IconBtn disabled padding='6px'>
+        <IconBtn aria-label='Next page' disabled padding='6px'>
           <ChevronRight height={20} width={20} />
         </IconBtn>
 
         <div className='flex'>
           <IconBtn
             onClick={toggleSplitView}
+            aria-label={
+              isSplitViewActive ? 'Switch to list view' : 'Switch to grid view'
+            }
             style={{
               width: 'auto',
               borderRadius: '4px',

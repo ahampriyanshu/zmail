@@ -1,6 +1,5 @@
 'use client';
 import styles from './email-content.module.scss';
-import { useRouter } from 'next/navigation';
 import { SubjectContainer } from './SubjectContainer';
 import { SenderContainer } from './SenderContainer';
 import { EmailAttributes } from '@/types';
@@ -10,7 +9,6 @@ import { useState } from 'react';
 import { emailList } from '@/app/data';
 
 export function MailContainer({ id }: { id: string }) {
-  const router = useRouter();
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const contentData = emailList.find(
@@ -18,7 +16,7 @@ export function MailContainer({ id }: { id: string }) {
   ) as EmailAttributes;
 
   if (!contentData) {
-    router.back();
+    return null;
   }
 
   const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {

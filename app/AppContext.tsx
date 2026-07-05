@@ -7,15 +7,27 @@ import React, {
   useState,
 } from 'react';
 import { ACTION_TYPE, initialState } from './constants/ui.constants';
-import { Action, AppState } from '@/types';
+import { Action, AppState, EmailAttributes } from '@/types';
 import {
   createEmailInLocalStorage,
   getEmailsFromLocalStorage,
   setInitialDate,
+  setEmailsToLocalStorage,
   setRecentDate,
 } from './utils/localStorage';
-import { emailList } from './data';
+import { asyncEmailList, permanentEmailList } from './data';
 import { Loader } from './components/Loader/Loader';
+
+const hydrateEmail = (
+  email: EmailAttributes,
+  storedEmail?: EmailAttributes
+): EmailAttributes => ({
+  ...email,
+  date: storedEmail?.date || email.date,
+  isFav: storedEmail?.isFav ?? false,
+  isActive: storedEmail?.isActive ?? true,
+  isOpened: storedEmail?.isOpened ?? false,
+});
 
 function appReducer(state: AppState, action: Action): AppState {
   switch (action.type) {
@@ -23,6 +35,21 @@ function appReducer(state: AppState, action: Action): AppState {
       return {
         ...state,
         isSideBarOpen: !state.isSideBarOpen,
+      };
+    case ACTION_TYPE.TOGGLE_MOBILE_DRAWER:
+      return {
+        ...state,
+        isMobileDrawerOpen: !state.isMobileDrawerOpen,
+      };
+    case ACTION_TYPE.CLOSE_MOBILE_DRAWER:
+      return {
+        ...state,
+        isMobileDrawerOpen: false,
+      };
+    case ACTION_TYPE.SET_MOBILE_SEARCH_ACTIVE:
+      return {
+        ...state,
+        isMobileSearchActive: action.payload,
       };
     case ACTION_TYPE.TOGGLE_SPLIT_VIEW:
       return {
@@ -42,7 +69,16 @@ function appReducer(state: AppState, action: Action): AppState {
     case 'PUSH_EMAIL':
       return {
         ...state,
-        emails: [...state.emails, action.payload],
+        emails: state.emails.some((email) => email.id === action.payload.id)
+          ? state.emails.map((email) =>
+              email.id === action.payload.id ? action.payload : email
+            )
+          : [action.payload, ...state.emails],
+      };
+    case 'SET_IS_LOADED':
+      return {
+        ...state,
+        isLoaded: action.payload,
       };
     case 'RESET_EMAILS':
       return {
@@ -90,9 +126,33 @@ export function AppProvider({ children }: { children: ReactNode }) {
     ╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚══════╝
     `);
     const storedEmails = getEmailsFromLocalStorage();
-    dispatch({ type: 'SET_IS_LOADED', payload: true });
+    const storedEmailById = new Map(
+      storedEmails.map((email) => [email.id, email])
+    );
+    const hydratedPermanentEmails = permanentEmailList.map((email) =>
+      hydrateEmail(email, storedEmailById.get(email.id))
+    );
+    const storedAsyncEmails = asyncEmailList
+      .filter((email) => storedEmailById.has(email.id))
+      .map((email) => hydrateEmail(email, storedEmailById.get(email.id)));
+    const knownEmailIds = new Set([
+      ...permanentEmailList.map((email) => email.id),
+      ...asyncEmailList.map((email) => email.id),
+    ]);
+    const otherStoredEmails = storedEmails.filter(
+      (email) => !knownEmailIds.has(email.id)
+    );
+    const hydratedEmails = [
+      ...hydratedPermanentEmails,
+      ...storedAsyncEmails,
+      ...otherStoredEmails,
+    ];
 
-    const newEmails = emailList.filter(
+    setEmailsToLocalStorage(hydratedEmails);
+    dispatch({ type: 'SET_IS_LOADED', payload: true });
+    dispatch({ type: 'RESET_EMAILS', payload: hydratedEmails });
+
+    const newEmails = asyncEmailList.filter(
       (email) =>
         !storedEmails.some((storedEmail) => storedEmail.id === email.id)
     );
@@ -116,8 +176,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
           (index + 1) * 3000
         );
       });
-    } else {
-      dispatch({ type: 'RESET_EMAILS' });
     }
   }, []);
 

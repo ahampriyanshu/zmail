@@ -1,4 +1,4 @@
-@import '../../styles/base/buttons';
+@use '../../styles/base/buttons' as *;
 $primary-color: #202124;
 $secondary-color: rgba(100, 121, 143, 0.122);
 
@@ -14,8 +14,11 @@ $secondary-color: rgba(100, 121, 143, 0.122);
   border-top: 1px solid $secondary-color;
 
   @media only screen and (max-width: 767px) {
-    padding-bottom: 0px;
+    gap: 3px;
+    padding: 0 10px 156px;
     border-top: none;
+    height: 100%;
+    justify-content: flex-start;
   }
 
   .email_content {
@@ -28,10 +31,6 @@ $secondary-color: rgba(100, 121, 143, 0.122);
     box-shadow: inset 0 -1px 0 0 $secondary-color;
     transition: box-shadow 0.15s linear;
 
-    &[aria-checked='true'] {
-      background-color: #c2dbff;
-    }
-
     &:hover {
       box-shadow:
         inset 1px 0 0 #dadce0,
@@ -42,15 +41,38 @@ $secondary-color: rgba(100, 121, 143, 0.122);
       cursor: pointer;
     }
 
-    @media only screen and (max-width: 768px) {
-      flex-direction: row;
+    @media only screen and (max-width: 767px) {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr) 48px;
+      column-gap: 8px;
+      align-items: center;
+      box-sizing: border-box;
+      min-height: 88px;
+      padding: 12px 10px;
+      border-radius: 0;
+      background-color: #fff;
       box-shadow: none;
+      border-bottom: none;
 
       &:hover {
         box-shadow: none;
-        cursor: unset;
+        cursor: pointer;
+      }
+
+      &:first-child {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+      }
+
+      &:last-child {
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
       }
     }
+  }
+
+  .selected {
+    background-color: #c2dbff;
   }
 
   .date {
@@ -78,6 +100,39 @@ $secondary-color: rgba(100, 121, 143, 0.122);
   justify-content: center;
   align-items: center;
   gap: 12px;
+
+  .mobile_avatar {
+    display: none;
+  }
+
+  @media only screen and (max-width: 767px) {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: start;
+    margin: 0;
+    padding-top: 4px;
+    gap: 0;
+
+    > button {
+      display: none;
+    }
+
+    .mobile_avatar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 44px;
+
+      img {
+        border-radius: 10px;
+        background-color: #d7dce5;
+        object-fit: cover;
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
 }
 
 .name_cell {
@@ -91,6 +146,17 @@ $secondary-color: rgba(100, 121, 143, 0.122);
   span {
     color: rgb(241, 20, 20);
     font-weight: 400;
+  }
+
+  @media only screen and (max-width: 767px) {
+    grid-column: 2;
+    grid-row: 1;
+    width: auto;
+    max-width: none;
+    min-width: 0;
+    padding-right: 0;
+    font-size: 1rem;
+    line-height: 1.25rem;
   }
 }
 
@@ -144,6 +210,79 @@ $secondary-color: rgba(100, 121, 143, 0.122);
     &:hover {
       background-color: rgba(100, 121, 143, 0.05);
       cursor: pointer;
+    }
+  }
+}
+
+.mobile_edge {
+  display: none;
+}
+
+@media only screen and (max-width: 767px) {
+  .msg_cell {
+    grid-column: 2;
+    grid-row: 2;
+    min-width: 0;
+    margin-right: 0;
+    line-height: 20px;
+
+    .msg_content {
+      max-width: none;
+      min-width: 0;
+      gap: 4px;
+
+      > div:first-child {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 0.9375rem;
+        line-height: 1.25rem;
+      }
+
+      .summary {
+        color: #5f6368;
+        font-weight: 400;
+        font-size: 0.9375rem;
+        line-height: 1.25rem;
+      }
+
+      .file {
+        width: fit-content;
+        max-width: 100%;
+        height: 28px;
+        margin-top: 2px;
+      }
+    }
+  }
+
+  .mobile_edge {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    display: flex;
+    min-width: 0;
+    height: 100%;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 8px;
+    padding-block: 2px;
+    overflow: hidden;
+
+    .date {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    button {
+      min-width: 36px;
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
     }
   }
 }

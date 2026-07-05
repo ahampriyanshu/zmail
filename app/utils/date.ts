@@ -31,6 +31,11 @@ export function getAbsoluteDate(inputDate: string): string {
   }
 }
 
+export function getMobileListDate(inputDate: string): string {
+  const date = new Date(inputDate);
+  return `${date.getDate()} ${getMonthName(date.getMonth())}`;
+}
+
 export function getRelativeTimeString(timeDifference: number): string {
   const minutes = Math.floor(timeDifference / (1000 * 60));
   const hours = Math.floor(timeDifference / (1000 * 60 * 60));

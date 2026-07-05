@@ -82,6 +82,113 @@
       margin: 0;
     }
   }
+
+  @media only screen and (max-width: 767px) {
+    min-height: 72px;
+    height: auto;
+    width: auto;
+    max-width: calc(100% - 24px);
+    margin: 0 12px 8px;
+    padding: 10px 12px;
+    gap: 12px;
+    border-radius: 12px;
+    background-color: #f8fafd;
+    box-sizing: border-box;
+
+    .sender_logo {
+      width: 48px;
+      padding-top: 0;
+      justify-content: flex-start;
+
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+      }
+    }
+
+    .options {
+      min-width: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto 32px;
+      grid-template-rows: auto auto;
+      column-gap: 14px;
+      row-gap: 0;
+      align-items: start;
+
+      .sender_info {
+        display: contents;
+        min-width: 0;
+
+        .text_content {
+          display: contents;
+          min-width: 0;
+
+          .title {
+            grid-column: 1;
+            grid-row: 1;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 1rem;
+            line-height: 1.25rem;
+            padding-right: 0;
+          }
+
+          .email {
+            display: none;
+          }
+
+          .unsubscribe {
+            display: block;
+            grid-column: 2;
+            grid-row: 1;
+            justify-self: start;
+            padding-left: 0;
+            color: #0b57d0;
+            font-size: 0.9375rem;
+            line-height: 1.25rem;
+            text-decoration: none;
+            white-space: nowrap;
+          }
+        }
+
+        .to_me {
+          grid-column: 1;
+          grid-row: 2;
+          margin-top: 0;
+          font-size: 0.875rem;
+          line-height: 1.125rem;
+        }
+      }
+    }
+
+    .content {
+      display: contents;
+
+      .time {
+        display: none;
+        max-width: 70px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: right;
+        line-height: 1.5rem;
+        font-size: 1rem;
+        white-space: nowrap;
+      }
+
+      button:first-of-type,
+      button:nth-of-type(2) {
+        display: none;
+      }
+
+      button:nth-of-type(3) {
+        display: none;
+      }
+    }
+  }
 }
 
 .fallback {

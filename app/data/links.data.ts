@@ -22,52 +22,27 @@ export const PROFILE_DATA: ProfileDataType = {
     username: 'ahampriyanshu',
     link: 'https://www.linkedin.com/in/ahampriyanshu',
   },
-  codeforces: {
-    img: '/icons/codeforces.svg',
-    title: 'Codeforces',
-    username: 'ahampriyanshu',
-    link: 'https://codeforces.com/profile/ahampriyanshu',
-  },
-  leetcode: {
-    img: '/icons/leetcode.png',
-    title: 'LeetCode',
-    username: 'ahampriyanshu',
-    link: 'https://leetcode.com/ahampriyanshu',
-  },
-  hackerrank: {
-    img: '/icons/hackerrank.png',
-    title: 'HackerRank',
-    username: 'ahampriyanshu',
-    link: 'https://www.hackerrank.com/ahampriyanshu',
-  },
   kaggle: {
     img: '/icons/kaggle.png',
     title: 'Kaggle',
     username: 'ahampriyanshu',
     link: 'https://www.kaggle.com/ahampriyanshu',
   },
-  telegram: {
-    img: '/icons/telegram.svg',
-    title: 'Telegram',
-    username: 'ahampriyanshu',
-    link: 'https://t.me/ahampriyanshu',
-  },
 };
 
 export const HEADER = {
-  SUPPORT: 'https://github.com/ahampriyanshu/ahampriyanshu.github.io',
+  SUPPORT: 'https://github.com/ahampriyanshu/zmail',
   APPS: 'https://gist.github.com/ahampriyanshu/7c38b9370b8c1baf009f868ac775134e',
-  SETUP: 'https://github.com/ahampriyanshu/ahampriyanshu.github.io#setup',
+  SETUP: 'https://github.com/ahampriyanshu/zmail#setup',
   ACCOUNT: 'https://ahampriyanshu.com',
   FEEDBACK_FORM: 'https://qke8euxur5q.typeform.com/to/wMrmQrsQ',
-  UPDATE_HISTORY:
-    'https://github.com/ahampriyanshu/ahampriyanshu.github.io/commits/main',
-  WORKSPACE: 'https://workspace.google.com/marketplace?pann=ogb',
+  UPDATE_HISTORY: 'https://github.com/ahampriyanshu/zmail/commits/main',
+  WORKSPACE: 'https://links.ahampriyanshu.com',
 };
 
 export const MAIL_DATA = {
   NAME: 'Priyanshu',
-  EMAIL: 'ahampriyanshu@gmail.com',
+  EMAIL: 'avampriyanshu@gmail.com',
   SUBJECT: 'Hi Priyanshu',
   BODY: 'Hello, hope you are doing well.',
 };

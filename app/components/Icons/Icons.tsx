@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { IconBtn } from './IconBtn';
 import { ICON_COLOR, ICON_COLOR_DARK } from '@/app/constants/ui.constants';
-import Tooltip from '../Tooltip/Tooltip';
 export { IconBtn, ICON_COLOR, ICON_COLOR_DARK };
 
 export const Fallback = ({
@@ -109,9 +108,27 @@ export const SearchIcon = ({
   >
     <path
       d='m20.49 19-5.73-5.73C15.53 12.2 16 10.91 16 9.5A6.5 6.5 0 1 0 9.5 16c1.41 0 2.7-.47 3.77-1.24L19 20.49 20.49 19zM5 9.5C5 7.01 7.01 5 9.5 5S14 7.01 14 9.5 11.99 14 9.5 14 5 11.99 5 9.5z'
-      fill={ICON_COLOR_DARK}
+      fill={strokeColor}
     />
     <path fill='none' d='M0 0h24v24H0V0z' />
+  </svg>
+);
+
+export const Microphone = ({
+  height = 24,
+  width = 24,
+  strokeColor = ICON_COLOR,
+}) => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    viewBox='0 0 24 24'
+    width={height}
+    height={width}
+  >
+    <path
+      d='M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3Zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.42 2.72 6.23 6 6.72V21h2v-3.28c3.28-.49 6-3.3 6-6.72h-1.7Z'
+      fill={strokeColor}
+    />
   </svg>
 );
 
@@ -287,6 +304,24 @@ export const Inbox = ({
   >
     <path
       d='M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-120H640q-30 38-71.5 59T480-240q-47 0-88.5-21T320-320H200v120Zm280-120q38 0 69-22t43-58h168v-360H200v360h168q12 36 43 58t69 22ZM200-200h560-560Z'
+      fill={strokeColor}
+    />
+  </svg>
+);
+
+export const AllInboxes = ({
+  height = 24,
+  width = 24,
+  strokeColor = ICON_COLOR,
+}) => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    viewBox='0 -960 960 960'
+    width={height}
+    height={width}
+  >
+    <path
+      d='M160-160q-33 0-56.5-23.5T80-240v-360h80v360h560v80H160Zm160-160q-33 0-56.5-23.5T240-400v-360h80v360h560v80H320Zm160-160q-33 0-56.5-23.5T400-560v-240q0-33 23.5-56.5T480-880h320q33 0 56.5 23.5T880-800v240q0 33-23.5 56.5T800-480H480Zm0-80h320v-240H480v240Zm80-80h160v-40H560v40Zm-80 80v-240 240Z'
       fill={strokeColor}
     />
   </svg>
@@ -839,6 +874,24 @@ export const UnReadMail = ({
   >
     <path
       d='M22 8.98V18c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2l.01-12c0-1.1.89-2 1.99-2h10.1c-.06.32-.1.66-.1 1s.04.68.1 1H4l8 5 3.67-2.29c.47.43 1.02.76 1.63.98L12 13 4 8v10h16V9.9c.74-.15 1.42-.48 2-.92M16 5c0 1.66 1.34 3 3 3s3-1.34 3-3-1.34-3-3-3-3 1.34-3 3'
+      fill={strokeColor}
+    />
+  </svg>
+);
+
+export const VideoCamera = ({
+  height = 24,
+  width = 24,
+  strokeColor = ICON_COLOR,
+}) => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width={height}
+    height={width}
+    viewBox='0 0 24 24'
+  >
+    <path
+      d='M17 10.5V6c0-1.1-.9-2-2-2H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2v-4.5l5 5v-13l-5 5ZM15 18H4V6h11v12Z'
       fill={strokeColor}
     />
   </svg>

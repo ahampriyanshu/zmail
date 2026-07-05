@@ -1,11 +1,11 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './sender-container.module.scss';
 import { EmailAttributes } from '@/types';
 import Image from 'next/image';
 import { IconBtn } from '../Icons/IconBtn';
 import { ArrowDropDown, Favourite, Return, ViewMore } from '../Icons/Icons';
-import { getAbsoluteDate, getRelativeDate } from '@/app/utils/date';
+import { getRelativeDate } from '@/app/utils/date';
 import { getInitialDate } from '@/app/utils/localStorage';
 
 export const SenderContainer = ({
@@ -13,11 +13,7 @@ export const SenderContainer = ({
 }: {
   contentData: EmailAttributes;
 }) => {
-  const [date, setDate] = React.useState<string>('');
-
-  useEffect(() => {
-    setDate(getInitialDate());
-  }, [contentData.id]);
+  const [date] = React.useState<string>(() => getInitialDate());
 
   const senderImg = contentData?.sender?.logo || '';
 
@@ -51,13 +47,13 @@ export const SenderContainer = ({
           {date ? (
             <span className={styles.time}>{getRelativeDate(date)}</span>
           ) : null}
-          <IconBtn padding='8px'>
+          <IconBtn aria-label='Star message' padding='8px'>
             <Favourite height={20} width={20} />
           </IconBtn>
-          <IconBtn padding='8px'>
+          <IconBtn aria-label='Reply' padding='8px'>
             <Return height={20} width={20} />
           </IconBtn>
-          <IconBtn padding='8px'>
+          <IconBtn aria-label='More message options' padding='8px'>
             <ViewMore height={20} width={20} />
           </IconBtn>
         </div>

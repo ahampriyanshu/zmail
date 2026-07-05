@@ -19,7 +19,7 @@ export const Drive = () => {
             width={48}
             height={48}
           />
-          Priyanshu (ahampriyanshu@gmail.com) has shared the following item:
+          Priyanshu (avampriyanshu@gmail.com) has shared the following item:
         </div>
         <div className={styles.preview}>
           <div className={styles.file}>
@@ -31,7 +31,9 @@ export const Drive = () => {
             />
             <span>Resume.pdf</span>
           </div>
-          <div
+          <button
+            type='button'
+            aria-label='Open resume preview'
             className={styles.thumbnail}
             onClick={() => openInNewTab('https://resume.ahampriyanshu.com/')}
           />

@@ -182,4 +182,42 @@
     letter-spacing: 0.3px;
     text-align: center;
   }
+
+  @media only screen and (max-width: 767px) {
+    width: 100%;
+    min-width: 0;
+    padding: 8px 16px 0;
+    box-sizing: border-box;
+
+    .content {
+      padding: 18px 16px;
+      box-sizing: border-box;
+
+      .header {
+        font-size: 22px;
+        line-height: 30px;
+        margin-bottom: 20px;
+      }
+
+      .sub_header {
+        align-items: flex-start;
+      }
+
+      .preview {
+        width: 100%;
+        padding: 14px;
+
+        .thumbnail {
+          width: 100%;
+          aspect-ratio: 361 / 210;
+          height: auto;
+        }
+      }
+    }
+
+    .credits {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
 }

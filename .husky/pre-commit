@@ -1,35 +1,6 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+echo 'Running required checks'
 
-echo '👷 Running the required checks'
-
-yarn format ||
-(
-    yarn format:fix
-    echo '❌ Prettier check failed.🐛 Please try committing again!';
-    false;
-)
-
-yarn lint ||
-(
-    yarn lint:fix
-    echo '❌ ESLint check failed.🐛 Please make the required changes listed above, add the changes, and try committing again!';
-    false; 
-)
-
-yarn type-check ||
-(
-    echo '❌ Type check failed.🐛 Please make the required changes listed above, add the changes, and try committing again!';
-    false;
-)
-
-echo '✅ All checks passed successfully'
-echo '🔨 Starting the build process'
-
-yarn build ||
-(
-    echo '😖 Build failed!';
-    false;
-)
-
-echo '📦 Build completed. Committing the changes'
+npm run format &&
+npm run lint &&
+npm run type-check &&
+npm run test

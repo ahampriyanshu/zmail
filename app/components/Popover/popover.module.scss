@@ -13,4 +13,28 @@
   transform: translate(5%, 100%);
   min-width: 164px;
   width: max-content;
+  z-index: 40;
+
+  @media only screen and (max-width: 767px) {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    min-width: 0;
+    transform: none;
+    z-index: 41;
+  }
+}
+
+.mobile-scrim {
+  display: none;
+
+  @media only screen and (max-width: 767px) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background-color: rgba(32, 33, 36, 0.38);
+  }
 }

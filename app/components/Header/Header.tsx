@@ -1,5 +1,5 @@
 'use client';
-import { memo, useContext, useState } from 'react';
+import { memo, useContext, useEffect, useState } from 'react';
 import styles from './header.module.scss';
 import {
   GridMenu,
@@ -11,7 +11,7 @@ import { AppContext } from '@/app/AppContext';
 import Image from 'next/image';
 import Tooltip from '../Tooltip/Tooltip';
 import { site } from '@/app/config';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { openInNewTab } from '@/app/utils/common';
 import { HEADER, PROFILE_DATA } from '@/app/data/links.data';
 import { Search } from '../Search/Search';
@@ -23,10 +23,25 @@ import { PRODUCT_TOUR } from '@/app/constants/common.constants';
 
 function Header() {
   const router = useRouter();
-  const { dispatch } = useContext(AppContext);
+  const pathname = usePathname();
+  const { state, dispatch } = useContext(AppContext);
   const [isHelperOpen, setIsHelperOpen] = useState(false);
+  const isMobileSearchActive = state?.isMobileSearchActive || false;
+  const isDetailRoute = pathname !== '/';
+
+  useEffect(() => {
+    document.body.classList.toggle('mobile-detail-route', isDetailRoute);
+
+    return () => {
+      document.body.classList.remove('mobile-detail-route');
+    };
+  }, [isDetailRoute]);
 
   const toggleSidebar = () => {
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      dispatch({ type: 'TOGGLE_MOBILE_DRAWER' });
+      return;
+    }
     dispatch({ type: 'TOGGLE_SIDEBAR' });
   };
 
@@ -201,18 +216,33 @@ function Header() {
   };
 
   return (
-    <div className={styles.container}>
+    <div
+      className={`${styles.container} ${
+        isMobileSearchActive ? styles.search_active : ''
+      } ${isDetailRoute ? styles.detail_route : ''}`}
+    >
+      <div className={styles.mobile_menu_container}>
+        <Tooltip content='Main Menu'>
+          <IconBtn aria-label='Main menu' onClick={toggleSidebar}>
+            <HamburgerMenu />
+          </IconBtn>
+        </Tooltip>
+      </div>
       <div className={styles.sidebar_toggle_container}>
         <Tooltip content='Main Menu'>
-          <IconBtn onClick={toggleSidebar}>
+          <IconBtn aria-label='Main menu' onClick={toggleSidebar}>
             <HamburgerMenu />
           </IconBtn>
         </Tooltip>
 
-        <div onClick={() => router.push('/')} className='flex-row-center hover'>
+        <button
+          type='button'
+          onClick={() => router.push('/')}
+          className='flex-row-center hover'
+        >
           <Image src='/zmail.png' alt='logo' width={32} height={32} />
           <h1>{site.title}</h1>
-        </div>
+        </button>
       </div>
 
       <div className={styles.header_profile_container}>
@@ -223,6 +253,7 @@ function Header() {
             trigger={
               <Tooltip id={PRODUCT_TOUR.SEVENTH_STEP} content='Support'>
                 <IconBtn
+                  aria-label='Support'
                   onClick={() => {
                     setIsHelperOpen(!isHelperOpen);
                   }}
@@ -235,14 +266,22 @@ function Header() {
             content={
               <div className={styles.support_container}>
                 <div className={styles.support_body}>
-                  <div onClick={startProductTour}>Help</div>
-                  <div onClick={() => openInNewTab(HEADER.UPDATE_HISTORY)}>
+                  <button type='button' onClick={startProductTour}>
+                    Help
+                  </button>
+                  <button
+                    type='button'
+                    onClick={() => openInNewTab(HEADER.UPDATE_HISTORY)}
+                  >
                     Updates
-                  </div>
+                  </button>
                   <span className={styles.divider} />
-                  <div onClick={() => openInNewTab(HEADER.FEEDBACK_FORM)}>
+                  <button
+                    type='button'
+                    onClick={() => openInNewTab(HEADER.FEEDBACK_FORM)}
+                  >
                     Send feedback to me
-                  </div>
+                  </button>
                 </div>
               </div>
             }
@@ -251,7 +290,7 @@ function Header() {
           <Popover
             trigger={
               <Tooltip id={PRODUCT_TOUR.SIXTH_STEP} content='Apps'>
-                <IconBtn padding='6px'>
+                <IconBtn aria-label='Apps' padding='6px'>
                   <GridMenu />
                 </IconBtn>
               </Tooltip>
@@ -260,7 +299,8 @@ function Header() {
               <div className={styles.apps_container}>
                 <div className={styles.apps_body}>
                   {Object.entries(PROFILE_DATA).map(([key, value]) => (
-                    <div
+                    <button
+                      type='button'
                       key={key}
                       onClick={() => openInNewTab(value.link)}
                       className={styles.apps_icon}
@@ -276,27 +316,60 @@ function Header() {
                       <span className={styles.apps_icon_text}>
                         {value.title}
                       </span>
-                    </div>
+                    </button>
                   ))}
                 </div>
-                <button>More from Google Workspace Marketplace</button>
+                <button
+                  type='button'
+                  className={styles.marketplace_btn}
+                  onClick={() => openInNewTab(HEADER.WORKSPACE)}
+                >
+                  More from marketplace
+                </button>
               </div>
             }
           />
 
-          <Tooltip content='Account'>
-            <IconBtn onClick={() => openInNewTab(HEADER.ACCOUNT)} padding='6px'>
-              <Image
-                style={{
-                  borderRadius: '50%',
-                }}
-                src='/avatar.png'
-                alt='logo'
-                width={30}
-                height={30}
-              />
-            </IconBtn>
-          </Tooltip>
+          <Popover
+            trigger={
+              <Tooltip content='Account'>
+                <IconBtn aria-label='Account' padding='6px'>
+                  <Image
+                    style={{
+                      borderRadius: '50%',
+                    }}
+                    src='/avatar.png'
+                    alt='logo'
+                    width={30}
+                    height={30}
+                    className={styles.account_trigger_avatar}
+                  />
+                </IconBtn>
+              </Tooltip>
+            }
+            content={
+              <div className={styles.account_container}>
+                <Image
+                  src='/avatar.png'
+                  alt='Priyanshu Tiwari'
+                  width={72}
+                  height={72}
+                  className={styles.account_avatar}
+                />
+                <div className={styles.account_name}>Priyanshu Tiwari</div>
+                <div className={styles.account_email}>
+                  avampriyanshu@gmail.com
+                </div>
+                <button
+                  type='button'
+                  className={styles.account_action}
+                  onClick={() => openInNewTab(HEADER.ACCOUNT)}
+                >
+                  Manage your Google Account
+                </button>
+              </div>
+            }
+          />
         </div>
       </div>
     </div>

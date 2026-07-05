@@ -1,38 +1,15 @@
 'use client';
-import React, { use, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styles from './email-list.module.scss';
-import { EmailAttributes, EmailTag, EmailType } from '@/types';
+import { EmailTag, EmailType } from '@/types';
 import { EmailItem } from './EmailItem';
 import { AppContext } from '@/app/AppContext';
 import { PRODUCT_TOUR } from '@/app/constants/common.constants';
+import { filterMail } from '@/app/utils/emailFilters';
 
 type EmailListProps = {
   typeFilter: EmailType;
   selectedTag: EmailTag | null;
-};
-
-const filterMails = (
-  email: EmailAttributes,
-  type: EmailType,
-  tag: EmailTag | null,
-  searchParam: string
-) => {
-  switch (type) {
-    case 'inbox':
-      return email.tag === tag && email.isActive;
-    case 'starred':
-      return email.isFav;
-    case 'draft':
-      return email.type === 'draft' && email.isActive;
-    case 'bin':
-      return !email.isActive;
-    case 'search':
-      return ['subject', 'summary', 'id'].some((prop) =>
-        (email as any)[prop].toLowerCase().includes(searchParam.toLowerCase())
-      );
-    default:
-      return false;
-  }
 };
 
 export const EmailList = ({ selectedTag, typeFilter }: EmailListProps) => {
@@ -40,7 +17,7 @@ export const EmailList = ({ selectedTag, typeFilter }: EmailListProps) => {
   const { emails = [], searchParam = '' } = state || {};
   const filteredEmails = Array.isArray(emails)
     ? emails?.filter((email) =>
-        filterMails(email, typeFilter, selectedTag, searchParam)
+        filterMail(email, typeFilter, selectedTag, searchParam)
       )
     : [];
 
@@ -58,7 +35,7 @@ export const EmailList = ({ selectedTag, typeFilter }: EmailListProps) => {
         filteredEmails.map((email, index) => (
           <EmailItem
             id={index === 0 ? PRODUCT_TOUR.SECOND_STEP : ''}
-            key={index}
+            key={email.id}
             email={email}
           />
         ))

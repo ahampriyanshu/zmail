@@ -12,6 +12,7 @@ import {
   setRecentDate,
 } from '../utils/localStorage';
 import { MAIL_DATA } from '../data/links.data';
+import { parseStringList } from '../utils/storageSerialization';
 
 export const useEmailActions = () => {
   const { dispatch } = useContext(AppContext);
@@ -60,14 +61,16 @@ export const useEmailActions = () => {
         dispatch({ type: 'PUSH_EMAIL', payload: email });
       }
     } else if (!createNew) {
-      dispatch({ type: 'PUSH_EMAIL', payload: email });
+      dispatch({
+        type: 'UPDATE_EMAIL',
+        payload: { emailId: email.id, data: email },
+      });
     }
   };
 
   const getSearchHistoryFromLocalStorage = () => {
     if (isServer) return [];
-    const searchHistory = localStorage.getItem(SEARCH_HISTORY_STORAGE_KEY);
-    return searchHistory ? JSON.parse(searchHistory) : [];
+    return parseStringList(localStorage.getItem(SEARCH_HISTORY_STORAGE_KEY));
   };
 
   const updateSearchHistory = (term: string) => {

@@ -10,6 +10,8 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
     background-color: #f3f2f0;
     padding: 0px;
     padding-top: 8px;
@@ -18,6 +20,7 @@
     .card {
       width: 100%;
       max-width: 464px;
+      box-sizing: border-box;
       padding-bottom: 16px;
       background-color: #fff;
       padding: 24px;
@@ -160,6 +163,64 @@
       border-top: 1px solid #dadce0;
     }
   }
+
+  @media only screen and (max-width: 767px) {
+    margin: 0;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+
+    .content {
+      align-items: stretch;
+      background-color: #fff;
+      padding: 8px 12px 16px;
+
+      .card {
+        width: 100%;
+        max-width: none;
+        padding: 16px 12px;
+        box-sizing: border-box;
+
+        .banner {
+          padding-bottom: 20px;
+        }
+
+        .btns {
+          gap: 8px;
+
+          button {
+            flex: 1;
+            min-width: 0;
+            padding-inline: 12px;
+          }
+        }
+
+        .recommended {
+          gap: 12px;
+          min-width: 0;
+
+          .info {
+            min-width: 0;
+            flex: 1 1 auto;
+
+            .text {
+              min-width: 0;
+              max-width: none;
+            }
+          }
+
+          button {
+            flex: 0 0 auto;
+            padding-inline: 12px;
+          }
+        }
+      }
+
+      .credits {
+        max-width: none;
+      }
+    }
+  }
 }
 
 .footer {
@@ -177,6 +238,29 @@
   }
 
   .imgs {
+    display: flex;
+    max-width: 100%;
     margin-bottom: 8px;
+  }
+
+  @media only screen and (max-width: 767px) {
+    align-items: stretch;
+
+    p {
+      font-size: 1.125rem;
+      line-height: 1.35;
+      margin-block: 0.75em;
+    }
+
+    .imgs {
+      justify-content: center;
+      gap: 8px;
+
+      img {
+        max-width: calc(50% - 4px);
+        height: auto;
+        margin-inline-end: 0 !important;
+      }
+    }
   }
 }

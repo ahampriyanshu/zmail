@@ -1,7 +1,7 @@
 'use client';
 import { EmailAttributes } from '@/types';
 import { IconBtn } from '../Icons/IconBtn';
-import { OpenInNewTab, Print } from '../Icons/Icons';
+import { Favourite, OpenInNewTab, Print } from '../Icons/Icons';
 import styles from './email-content.module.scss';
 import { openInNewTab } from '@/app/utils/common';
 
@@ -17,10 +17,18 @@ export const SubjectContainer = ({
         <div className={styles.tag}>{contentData?.tag}</div>
       </div>
       <div className={styles.icon_content}>
-        <IconBtn padding='8px'>
+        <IconBtn
+          aria-label='Star message'
+          className={styles.mobile_star}
+          padding='8px'
+        >
+          <Favourite height={24} width={24} />
+        </IconBtn>
+        <IconBtn aria-label='Print message' padding='8px'>
           <Print height={20} width={20} />
         </IconBtn>
         <IconBtn
+          aria-label='Open message in new tab'
           onClick={() =>
             openInNewTab(
               'https://www.youtube.com/watch?v=wQTbkEeCTeM&pp=ygUPbG91aWUgZnVubnkgY3V0'

@@ -1,6 +1,6 @@
 'use client';
 import { TooltipProps } from '@/types';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 const Tooltip: React.FC<TooltipProps> = ({
   content,
@@ -8,20 +8,20 @@ const Tooltip: React.FC<TooltipProps> = ({
   disabled = false,
   direction = 'bottom',
   delay = 400,
-  children = null,
+  children,
 }: TooltipProps) => {
-  let timeout: NodeJS.Timeout | undefined;
+  const timeout = useRef<NodeJS.Timeout | null>(null);
   const [active, setActive] = useState(false);
 
   const showTip = () => {
-    timeout = setTimeout(() => {
+    timeout.current = setTimeout(() => {
       setActive(true);
     }, delay);
   };
 
   const hideTip = () => {
-    if (timeout) {
-      clearTimeout(timeout);
+    if (timeout.current) {
+      clearTimeout(timeout.current);
     }
     setActive(false);
   };
@@ -31,9 +31,11 @@ const Tooltip: React.FC<TooltipProps> = ({
   return (
     <div
       id={id}
-      className={`tooltip-wrapper ${disabled ? 'tooltip-disabled' : ''}}`}
+      className={`tooltip-wrapper ${disabled ? 'tooltip-disabled' : ''}`}
       onMouseEnter={showTip}
       onMouseLeave={hideTip}
+      onFocus={showTip}
+      onBlur={hideTip}
     >
       {children}
       {active && <div className={`tooltip-body ${direction}`}>{content}</div>}

@@ -1,3 +1,3 @@
-@import 'typography.scss';
-@import 'buttons.scss';
-@import 'reset.scss';
+@forward 'typography';
+@forward 'buttons';
+@forward 'reset';

@@ -1,52 +1,42 @@
 name: Continuous Integration
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ['main']
-
-  # Allows you to run this workflow manually from the Actions tab
+  pull_request:
+    branches: ['main']
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version-file: '.nvmrc'
+          cache: npm
 
       - name: Install dependencies
-        run: yarn --immutable --immutable-cache
-
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          # Make sure the actual branch is checked out when running on pull requests
-          ref: ${{ github.head_ref }}
-          # This is important to fetch the changes to the previous commit
-          fetch-depth: 0
+        run: npm ci
 
       - name: Format Check
-        uses: creyD/prettier_action@v4.3
-        with:
-          # This part is also where you can pass other options, for example:
-          prettier_options: --check **/*.{ts,tsx,js,jsx,md,mdx,scss,css}
+        run: npm run format
 
       - name: Lint Check
-        uses: esrimo/gh-action-eslint-changeset@v1
-        id: eslint-changeset
-        with:
-          main-branch: 'main'
-          file-extension: 'ts|tsx|js|jsx|md|mdx|scss|css'
+        run: npm run lint
 
       - name: Type Check
-        run: yarn run type-check
+        run: npm run type-check
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        run: npm run build

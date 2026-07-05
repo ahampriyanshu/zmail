@@ -1,15 +1,31 @@
-@import 'styles/abstracts/variables';
-@import 'styles/abstracts/utils';
+@use 'styles/abstracts/variables' as *;
+@use 'styles/abstracts/utils' as *;
 
 .sidebar_wrapper {
   margin-top: $header-height;
   display: flex;
   height: calc(100vh - $header-height);
-  width: 100vw;
+  height: calc(100dvh - $header-height);
+  width: 100%;
+  min-width: 0;
+
+  @media only screen and (max-width: 767px) {
+    height: calc(100dvh - $header-height);
+  }
+}
+
+:global(body.mobile-detail-route) {
+  .sidebar_wrapper {
+    @media only screen and (max-width: 767px) {
+      margin-top: 0;
+      height: 100dvh;
+    }
+  }
 }
 
 .content_container {
   flex-grow: 1;
+  min-width: 0;
   background-color: #fff;
   border-radius: 16px;
   margin-right: 16px;
@@ -21,5 +37,16 @@
     border-radius: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
+    width: 100%;
+    background-color: var(--background-color);
+  }
+}
+
+:global(body.mobile-detail-route) {
+  .content_container {
+    @media only screen and (max-width: 767px) {
+      margin: 0;
+      height: 100dvh;
+    }
   }
 }

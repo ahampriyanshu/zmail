@@ -1,6 +1,39 @@
 import { EmailAttributes } from '@/types';
 
-export const defaultData: EmailAttributes[] = [
+export const permanentData: EmailAttributes[] = [
+  {
+    id: 'kosh',
+    subject: 'Welcome to Kosh: market briefs without the noise',
+    summary:
+      'Kosh turns scheduled market jobs into validated Indian stock-market reports, portfolio snapshots, and research notes you can revisit anytime.',
+    body: 'Kosh is ready with daily market intelligence, scorecards, portfolio views, and research archives for the Indian market.',
+    priority: 1,
+    sender: {
+      name: 'Kosh',
+      logo: 'kosh.svg',
+      email: 'briefings@kosh.ahampriyanshu.com',
+    },
+    type: 'inbox',
+    tag: 'primary',
+  },
+  {
+    id: 'supertrips',
+    subject: 'Welcome to SuperTrips: routes across India, city by city',
+    summary:
+      'SuperTrips helps you browse curated India journeys, compare route stops, and open trip details like a travel diary built for planning.',
+    body: 'SuperTrips is ready with curated route cards, city-by-city trip details, and a map-first way to explore journeys across India.',
+    priority: 2,
+    sender: {
+      name: 'SuperTrips',
+      logo: 'supertrips.svg',
+      email: 'routes@supertrips.ahampriyanshu.com',
+    },
+    type: 'inbox',
+    tag: 'primary',
+  },
+];
+
+export const asyncData: EmailAttributes[] = [
   {
     id: 'linkedin',
     subject: 'I want to connect',
@@ -24,7 +57,7 @@ export const defaultData: EmailAttributes[] = [
     },
     subject: 'Item shared with you: ‘Resume.pdf’',
     summary:
-      "Priyanshu shared an item Priyanshu (ahampriyanshu@gmail.com) has shared the following item: Vaibhav-Resume.pdf Open If you don't want to receive files from this person, block the sender from Drive",
+      "Priyanshu shared an item Priyanshu (avampriyanshu@gmail.com) has shared the following item: Vaibhav-Resume.pdf Open If you don't want to receive files from this person, block the sender from Drive",
     file: {
       name: 'Resume.pdf',
       size: '1.2 MB',
@@ -35,3 +68,5 @@ export const defaultData: EmailAttributes[] = [
     tag: 'primary',
   },
 ];
+
+export const defaultData: EmailAttributes[] = [...permanentData, ...asyncData];

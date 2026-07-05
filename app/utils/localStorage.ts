@@ -5,6 +5,7 @@ import {
   EMAIL_STORAGE_KEY,
   RECENT_ACTIVITY_KEY,
 } from '../constants/common.constants';
+import { parseEmailList } from './storageSerialization';
 
 export const setInitialDate = () => {
   if (isServer) return;
@@ -28,8 +29,7 @@ export const getRecentDate = (): string => {
 
 export const getEmailsFromLocalStorage = (): EmailAttributes[] => {
   if (isServer) return [] as EmailAttributes[];
-  const storedEmails = localStorage?.getItem(EMAIL_STORAGE_KEY);
-  return storedEmails ? JSON.parse(storedEmails) : [];
+  return parseEmailList(localStorage?.getItem(EMAIL_STORAGE_KEY));
 };
 
 export const setEmailsToLocalStorage = (emails: EmailAttributes[]) => {
@@ -39,6 +39,11 @@ export const setEmailsToLocalStorage = (emails: EmailAttributes[]) => {
 
 export const createEmailInLocalStorage = (newEmail: EmailAttributes) => {
   const storedEmails = getEmailsFromLocalStorage();
-  const updatedEmails = [...storedEmails, newEmail];
+  const isExistingEmail = storedEmails.some(
+    (email) => email.id === newEmail.id
+  );
+  const updatedEmails = isExistingEmail
+    ? storedEmails.map((email) => (email.id === newEmail.id ? newEmail : email))
+    : [newEmail, ...storedEmails];
   setEmailsToLocalStorage(updatedEmails);
 };

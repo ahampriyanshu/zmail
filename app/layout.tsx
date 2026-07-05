@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import './styles/global.scss';
 import styles from './layout.module.scss';
@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   title: 'Priyanshu Tiwari',
   description:
     "Hi there, I'm Priyanshu Tiwari. A web developer and history buff, currently working at HackerRank as a Software Engineer.",
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({

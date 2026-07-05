@@ -3,34 +3,37 @@
   "version": "1.0.1",
   "private": false,
   "license": "MIT",
+  "packageManager": "npm@11.13.0",
   "scripts": {
-    "dev": "rm -rf .next build && NODE_ENV=development next dev",
-    "build": "NODE_ENV=production next build",
+    "dev": "next dev",
+    "build": "next build --webpack",
     "start": "next start",
-    "prepare": "husky install",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
+    "prepare": "husky",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .gitignore .",
-    "type-check": "tsc --pretty --noEmit"
+    "test": "tsx --test app/**/*.test.ts",
+    "type-check": "next typegen && tsc --pretty --noEmit"
   },
   "dependencies": {
-    "next": "13.5.6",
-    "react": "^18",
-    "react-dom": "^18",
-    "shepherd.js": "^11.2.0"
+    "next": "16.2.10",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "shepherd.js": "15.2.2"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "13.5.6",
-    "eslint-config-prettier": "^9.0.0",
-    "husky": "^8.0.0",
-    "lint-staged": "^15.0.2",
-    "prettier": "^3.0.3",
-    "sass": "^1.69.4",
-    "typescript": "^5"
+    "@types/node": "26.1.0",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "eslint": "9.39.1",
+    "eslint-config-next": "16.2.10",
+    "eslint-config-prettier": "10.1.8",
+    "husky": "9.1.7",
+    "lint-staged": "17.0.8",
+    "prettier": "3.9.4",
+    "sass": "1.101.0",
+    "tsx": "4.23.0",
+    "typescript": "6.0.3"
   }
 }
