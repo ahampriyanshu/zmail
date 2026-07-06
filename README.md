@@ -1,6 +1,6 @@
 # Zmail
 
-Gmail styled portfolio app in NextJS.
+Gmail-styled portfolio app.
 
 ![Zmail](https://img.shields.io/github/license/ahampriyanshu/zmail)
 ![Size](https://img.shields.io/github/repo-size/ahampriyanshu/zmail)
@@ -10,13 +10,14 @@ Gmail styled portfolio app in NextJS.
 
 ## Features
 
-- [Next](https://nextjs.org/) v13.5 (App Router with server and client Components)
-- Code Quality: [TypeScript](https://www.typescriptlang.org/), [Prettier](https://prettier.io/), [ESLint](https://eslint.org/), [Husky](https://typicode.github.io/husky/)
-- CI/CD: [GitHub Actions](https://github.com/features/actions)
+- [Next.js](https://nextjs.org/) 16 with the App Router
+- CI/CD with [GitHub Actions](https://github.com/features/actions)
 - Hosting: [GitHub Pages](https://pages.github.com/)
 - Icons: [Google Fonts](https://fonts.google.com/icons)
 
 ## Setup
+
+Install Git and Node.js, then run:
 
 ```bash
 brew install git node
@@ -24,4 +25,18 @@ git clone https://github.com/ahampriyanshu/zmail.git
 cd zmail
 npm install
 npm run dev
+```
+
+The development server runs at `http://localhost:3000` by default.
+
+## Scripts
+
+```bash
+npm run dev          # Start the local Next.js development server
+npm run build        # Build the production app
+npm run start        # Start the production server
+npm run lint         # Run ESLint
+npm run format       # Check Prettier formatting
+npm run test         # Run unit tests
+npm run type-check   # Generate Next.js types and run TypeScript checks
 ```
