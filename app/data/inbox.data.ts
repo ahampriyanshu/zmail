@@ -10,7 +10,7 @@ export const permanentData: EmailAttributes[] = [
     priority: 1,
     sender: {
       name: 'Kosh',
-      logo: 'kosh.svg',
+      logo: 'kosh.png',
       email: 'briefings@kosh.ahampriyanshu.com',
     },
     type: 'inbox',

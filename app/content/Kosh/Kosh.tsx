@@ -3,7 +3,7 @@ import { ProductWelcome } from '../ProductWelcome/ProductWelcome';
 export const Kosh = () => (
   <ProductWelcome
     variant='kosh'
-    logo='/icons/kosh.svg'
+    logo='/icons/kosh.png'
     brand='Kosh'
     eyebrow='Market intelligence'
     title='Your Indian-market brief is already being assembled.'

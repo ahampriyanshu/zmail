@@ -6,21 +6,7 @@ import { IconBtn } from '../Icons/IconBtn';
 import { Back, Filters, SearchIcon } from '../Icons/Icons';
 import { useEmailActions } from '@/app/hooks/useEmailActions';
 import { PRODUCT_TOUR } from '@/app/constants/common.constants';
-import { EmailType } from '@/types';
-
-const emailTypes: EmailType[] = [
-  'inbox',
-  'sent',
-  'draft',
-  'snoozed',
-  'starred',
-  'spam',
-  'bin',
-  'search',
-];
-
-const isEmailType = (value: string): value is EmailType =>
-  emailTypes.includes(value as EmailType);
+import { getMailboxFilterFromSearch } from '@/app/utils/searchQuery';
 
 export function Search() {
   const { state, dispatch } = useContext(AppContext);
@@ -40,10 +26,10 @@ export function Search() {
 
   const handleSearchKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      const [command, type] = searchParam.split(/(?<=in: )/);
+      const mailboxFilter = getMailboxFilterFromSearch(searchParam);
       updateSearchHistory(searchParam);
-      if (command === 'in: ' && isEmailType(type)) {
-        dispatch({ type: 'SET_FILTER_PARAM', payload: type });
+      if (mailboxFilter) {
+        dispatch({ type: 'SET_FILTER_PARAM', payload: mailboxFilter });
       } else {
         dispatch({ type: 'SET_FILTER_PARAM', payload: 'search' });
       }

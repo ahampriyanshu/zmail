@@ -23,7 +23,7 @@ export const PROFILE_DATA: ProfileDataType = {
     link: 'https://www.linkedin.com/in/ahampriyanshu',
   },
   kosh: {
-    img: '/icons/kosh.svg',
+    img: '/icons/kosh.png',
     title: 'Kosh',
     username: 'market briefs',
     link: 'https://kosh.ahampriyanshu.com',
