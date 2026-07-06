@@ -34,27 +34,6 @@
   }
 
   @media only screen and (max-width: 767px) {
-    position: sticky;
-    bottom: 0;
-    z-index: 4;
-    margin-left: 0;
-    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-    justify-content: stretch;
-    gap: 12px;
-    background-color: rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 -1px 0 rgba(60, 64, 67, 0.12);
-
-    button {
-      flex: 1;
-      min-width: 0;
-      height: 48px;
-      border-radius: 24px;
-      background-color: #e8e7ff;
-      border-color: transparent;
-      box-shadow: none;
-      color: #1f1f1f;
-      font-size: 1rem;
-    }
+    display: none;
   }
 }

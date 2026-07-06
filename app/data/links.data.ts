@@ -22,6 +22,18 @@ export const PROFILE_DATA: ProfileDataType = {
     username: 'ahampriyanshu',
     link: 'https://www.linkedin.com/in/ahampriyanshu',
   },
+  kosh: {
+    img: '/icons/kosh.svg',
+    title: 'Kosh',
+    username: 'market briefs',
+    link: 'https://kosh.ahampriyanshu.com',
+  },
+  supertrips: {
+    img: '/icons/supertrips.svg',
+    title: 'SuperTrips',
+    username: 'curated routes',
+    link: 'https://supertrips.ahampriyanshu.com',
+  },
   kaggle: {
     img: '/icons/kaggle.png',
     title: 'Kaggle',

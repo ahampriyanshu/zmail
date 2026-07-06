@@ -18,7 +18,7 @@ export const permanentData: EmailAttributes[] = [
   },
   {
     id: 'supertrips',
-    subject: 'Welcome to SuperTrips: routes across India, city by city',
+    subject: 'SuperTrips: Discover curated routes across India',
     summary:
       'SuperTrips helps you browse curated India journeys, compare route stops, and open trip details like a travel diary built for planning.',
     body: 'SuperTrips is ready with curated route cards, city-by-city trip details, and a map-first way to explore journeys across India.',

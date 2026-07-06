@@ -6,7 +6,7 @@ export const SuperTrips = () => (
     logo='/icons/supertrips.svg'
     brand='SuperTrips'
     eyebrow='Travel routes'
-    title='A route diary for crossing India one city at a time.'
+    title='SuperTrips: Discover curated routes across India'
     intro='SuperTrips is a curated collection of journeys across India. It turns long route ideas into browsable trip cards, city stops, map context, and practical details for planning or remembering.'
     cta={{
       label: 'Open SuperTrips',

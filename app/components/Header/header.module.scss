@@ -218,6 +218,21 @@ $header-height: var(--header-height);
   }
 }
 
+.mobile_account_button {
+  display: none;
+
+  @media only screen and (max-width: 767px) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+}
+
 .support_container {
   box-shadow:
     0 1px 2px 0 rgba(60, 64, 67, 0.3),

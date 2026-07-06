@@ -5,6 +5,7 @@ import { EmailViewHeader } from '../EmailHeader/EmailViewHeader';
 import { useEmailActions } from '@/app/hooks/useEmailActions';
 import { AppContext } from '@/app/AppContext';
 import { emailList } from '@/app/data';
+import Footer from '../Footer/Footer';
 
 export const EmailPage = ({ id }: { id: string }) => {
   const { updateEmailArgs } = useEmailActions();
@@ -27,6 +28,7 @@ export const EmailPage = ({ id }: { id: string }) => {
     <div className='h-100 w-100'>
       <EmailViewHeader />
       <MailContainer id={id} />
+      <Footer showDesktop={false} />
     </div>
   );
 };

@@ -1,6 +1,7 @@
 .container {
   display: flex;
   justify-content: center;
+  margin-top: 12px;
   margin-left: 72px;
   margin-right: 24px;
   margin-bottom: 72px;
@@ -129,11 +130,15 @@
 .sections {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  padding: 24px;
+  padding: 0;
 
   div {
     min-width: 0;
+    padding: 24px;
+  }
+
+  div + div {
+    border-left: 1px solid rgba(60, 64, 67, 0.1);
   }
 
   h3 {
@@ -153,14 +158,21 @@
     grid-template-columns: 1fr;
     gap: 18px;
     padding: 22px 20px 26px;
+
+    div {
+      padding: 0;
+    }
+
+    div + div {
+      border-left: 0;
+    }
   }
 }
 
 .kosh {
   .hero {
     background:
-      linear-gradient(90deg, rgba(28, 86, 69, 0.14), transparent 46%),
-      #f5f8f4;
+      linear-gradient(90deg, rgba(28, 86, 69, 0.14), transparent 46%), #f5f8f4;
   }
 
   .hero button {
@@ -180,7 +192,11 @@
 .supertrips {
   .hero {
     background:
-      radial-gradient(circle at 84% 18%, rgba(201, 150, 42, 0.28), transparent 30%),
+      radial-gradient(
+        circle at 84% 18%,
+        rgba(201, 150, 42, 0.28),
+        transparent 30%
+      ),
       #f5f0e8;
   }
 

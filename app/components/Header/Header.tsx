@@ -370,6 +370,24 @@ function Header() {
               </div>
             }
           />
+
+          <button
+            type='button'
+            aria-label='Open account'
+            className={styles.mobile_account_button}
+            onClick={() => openInNewTab(HEADER.ACCOUNT)}
+          >
+            <Image
+              style={{
+                borderRadius: '50%',
+              }}
+              src='/avatar.png'
+              alt='logo'
+              width={40}
+              height={40}
+              className={styles.account_trigger_avatar}
+            />
+          </button>
         </div>
       </div>
     </div>

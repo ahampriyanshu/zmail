@@ -7,29 +7,8 @@
       <stop offset=".7" stop-color="#456156"/>
       <stop offset="1" stop-color="#173c33"/>
     </linearGradient>
-    <radialGradient id="dial" cx="36%" cy="30%" r="72%">
-      <stop stop-color="#ffffff"/>
-      <stop offset=".44" stop-color="#c2ccc6"/>
-      <stop offset="1" stop-color="#173c33"/>
-    </radialGradient>
   </defs>
 
-  <path d="M25 18h44M25 31h44" stroke="#111" stroke-width="9" stroke-linecap="round"/>
   <path d="M33 18h19c11.6 0 19.5 6.2 19.5 16 0 10.6-8.6 17-22 17H35l29 31" stroke="#111" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M25 18h44M25 31h44" stroke="#eff4f1" stroke-width="4" stroke-linecap="round" opacity=".64"/>
   <path d="M33 18h19c11.6 0 19.5 6.2 19.5 16 0 10.6-8.6 17-22 17H35l29 31" stroke="url(#rupee)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-
-  <circle cx="50" cy="51" r="11" fill="#111"/>
-  <circle cx="50" cy="51" r="7" fill="url(#dial)"/>
-  <circle cx="50" cy="51" r="2.5" fill="#111"/>
-  <g stroke="#111" stroke-width="2.6" stroke-linecap="round">
-    <path d="M50 40v5"/>
-    <path d="M50 57v5"/>
-    <path d="M39 51h5"/>
-    <path d="M56 51h5"/>
-    <path d="m42.4 43.4 3.5 3.5"/>
-    <path d="m57.6 43.4-3.5 3.5"/>
-    <path d="m42.4 58.6 3.5-3.5"/>
-    <path d="m57.6 58.6-3.5-3.5"/>
-  </g>
 </svg>

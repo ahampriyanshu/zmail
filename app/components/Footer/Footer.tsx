@@ -9,7 +9,7 @@ import { getMeetScheduleUrl } from '@/app/utils/calendar';
 import { AppContext } from '@/app/AppContext';
 import { getUnopenedMailLabel } from '@/app/utils/mailCounts';
 
-function Footer() {
+function Footer({ showDesktop = true }: { showDesktop?: boolean }) {
   const { state } = useContext(AppContext);
   const maxValue = 15;
   const currentValue = 3.7;
@@ -27,7 +27,11 @@ function Footer() {
 
   return (
     <>
-      <div className={styles.container}>
+      <div
+        className={`${styles.container} ${
+          showDesktop ? '' : styles.hide_desktop
+        }`}
+      >
         <div className={styles.content}>
           <div className={styles.derive}>
             <div className={styles.progressBar}>
